@@ -1,13 +1,15 @@
-function rightSideView(root) {
-  if (!root) return [];
-  const result = [];
-  let level = 0;
-  const traverse = (node, level) => {
-    if (!node) return;
-    if (result[level] === undefined) result[level] = node.val;
-    traverse(node.right, level + 1);
-    traverse(node.left, level + 1);
-  };
-  traverse(root, level);
+function productExceptSelf(nums) {
+  const n = nums.length;
+  const result = new Array(n).fill(1);
+  let product = 1;
+  for (let i = 0; i < n; i++) {
+    result[i] *= product;
+    product *= nums[i];
+  }
+  product = 1;
+  for (let i = n - 1; i >= 0; i--) {
+    result[i] *= product;
+    product *= nums[i];
+  }
   return result;
 }
